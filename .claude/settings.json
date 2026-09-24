@@ -3,7 +3,8 @@
     "allow": [
       "Read(//tmp/**)",
       "Bash(curl -s http://localhost:5183/)",
-      "Bash(xargs -I{} sh -c 'echo ==={}===; cat {}')"
+      "Bash(xargs -I{} sh -c 'echo ==={}===; cat {}')",
+      "Bash(timeout 60 bunx --bun shadcn add tabs dialog -y)"
     ]
   }
 }

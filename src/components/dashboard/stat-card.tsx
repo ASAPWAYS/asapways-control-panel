@@ -1,7 +1,7 @@
 import { ArrowUp, ArrowDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import type { StatCardData } from "@/lib/mock/dashboard"
+import type { StatCardData } from "@/lib/types"
 
 function StatCard({ value, label, trend }: StatCardData) {
   return (

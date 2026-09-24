@@ -9,15 +9,14 @@ import {
   type TooltipContentProps,
 } from "recharts"
 
-import type { WeeklyAnalysisPoint } from "@/lib/mock/dashboard"
+export interface WeeklyAnalysisPoint {
+  day: string
+  revenue: number
+}
 
-const SELL_COLOR = "var(--chart-1)"
-const WITHDRAW_COLOR = "var(--chart-2)"
+const REVENUE_COLOR = "var(--chart-1)"
 
-const legend = [
-  { key: "sellGiftcards", label: "Sell Giftcards", color: SELL_COLOR },
-  { key: "withdrawFunds", label: "Withdraw Funds", color: WITHDRAW_COLOR },
-] as const
+const legend = [{ key: "revenue", label: "Revenue", color: REVENUE_COLOR }] as const
 
 function ChartTooltip({ active, payload, label }: TooltipContentProps) {
   if (!active || !payload?.length) return null
@@ -92,18 +91,11 @@ function WeeklyAnalysisChart({ data }: { data: WeeklyAnalysisPoint[] }) {
               content={(props) => <ChartTooltip {...props} />}
             />
             <Bar
-              dataKey="sellGiftcards"
-              name="Sell Giftcards"
-              fill={SELL_COLOR}
+              dataKey="revenue"
+              name="Revenue"
+              fill={REVENUE_COLOR}
               radius={[4, 4, 0, 0]}
-              barSize={14}
-            />
-            <Bar
-              dataKey="withdrawFunds"
-              name="Withdraw Funds"
-              fill={WITHDRAW_COLOR}
-              radius={[4, 4, 0, 0]}
-              barSize={14}
+              barSize={20}
             />
           </BarChart>
         </ResponsiveContainer>

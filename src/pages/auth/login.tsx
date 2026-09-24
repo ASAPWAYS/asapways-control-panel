@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react"
+import { useNavigate } from "react-router-dom"
 import { Eye, EyeOff } from "lucide-react"
 
 import { AuthLayout } from "@/components/auth/auth-layout"
@@ -6,23 +7,106 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { ApiError } from "@/lib/api/client"
+import { useAuth } from "@/lib/auth/use-auth"
 
 const fieldInputClassName =
   "h-13 rounded-full border-white/15 bg-white/[0.03] px-5 text-white placeholder:text-slate-500 focus-visible:border-sky-500 focus-visible:ring-sky-500/30"
 
 function LoginPage() {
+  const navigate = useNavigate()
+  const { requestLoginCode, confirmLoginCode } = useAuth()
+
+  const [step, setStep] = useState<"credentials" | "verify">("credentials")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [otp, setOtp] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleCredentialsSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    setError(null)
+    setSubmitting(true)
+    try {
+      await requestLoginCode(email, password)
+      setStep("verify")
+    } catch (err) {
+      setError(describeError(err))
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  async function handleVerifySubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setError(null)
+    setSubmitting(true)
+    try {
+      await confirmLoginCode(email, otp, rememberMe)
+      navigate("/dashboard", { replace: true })
+    } catch (err) {
+      setError(describeError(err))
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  if (step === "verify") {
+    return (
+      <AuthLayout title="Check your email">
+        <form onSubmit={handleVerifySubmit} className="flex flex-col gap-6">
+          <p className="text-center text-sm text-slate-400">
+            We sent a login code to <span className="text-white">{email}</span>
+          </p>
+
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="otp" className="font-normal text-slate-300">
+              Login code
+            </Label>
+            <Input
+              id="otp"
+              type="text"
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              autoFocus
+              value={otp}
+              onChange={(event) => setOtp(event.target.value)}
+              className={fieldInputClassName}
+            />
+          </div>
+
+          {error ? <p className="text-center text-sm text-red-400">{error}</p> : null}
+
+          <Button
+            type="submit"
+            disabled={submitting || !otp}
+            className="mt-4 h-13 w-full rounded-full bg-[#152a42] text-slate-400 hover:bg-[#1b3550] hover:text-slate-300"
+          >
+            {submitting ? "Verifying…" : "Verify & Continue"}
+          </Button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setStep("credentials")
+              setOtp("")
+              setError(null)
+            }}
+            className="text-center text-sm text-slate-400 hover:text-slate-200"
+          >
+            Use a different account
+          </button>
+        </form>
+      </AuthLayout>
+    )
   }
 
   return (
     <AuthLayout title="AsapWays Admin">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+      <form onSubmit={handleCredentialsSubmit} className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
           <Label htmlFor="email" className="font-normal text-slate-300">
             Email
@@ -79,15 +163,24 @@ function LoginPage() {
           </Label>
         </div>
 
+        {error ? <p className="text-center text-sm text-red-400">{error}</p> : null}
+
         <Button
           type="submit"
+          disabled={submitting || !email || !password}
           className="mt-4 h-13 w-full rounded-full bg-[#152a42] text-slate-400 hover:bg-[#1b3550] hover:text-slate-300"
         >
-          Continue
+          {submitting ? "Sending code…" : "Continue"}
         </Button>
       </form>
     </AuthLayout>
   )
+}
+
+function describeError(error: unknown): string {
+  if (error instanceof ApiError) return error.message
+  if (error instanceof Error) return error.message
+  return "Something went wrong. Please try again."
 }
 
 export default LoginPage

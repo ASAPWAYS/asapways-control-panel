@@ -1,14 +1,4 @@
-export type TrendDirection = "up" | "down"
-
-export interface StatCardData {
-  id: string
-  value: string
-  label: string
-  trend?: {
-    direction: TrendDirection
-    percent: string
-  }
-}
+import type { StatCardData } from "@/lib/types"
 
 export const statCards: StatCardData[] = [
   {
