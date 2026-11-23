@@ -172,7 +172,9 @@ function ApprovalsPage() {
                         <StatusDot tone={statusTone[approval.status]} label={approval.status} />
                       </TableCell>
                       <TableCell className="text-muted-foreground">
-                        {new Date(approval.createdAt).toLocaleString()}
+                        {approval.createdAt
+                          ? new Date(approval.createdAt).toLocaleString()
+                          : "—"}
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
