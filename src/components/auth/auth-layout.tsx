@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import { Logo } from "@/components/brand/logo"
 import { LogoMark } from "@/components/brand/logo-mark"
 
 function AuthLayout({
@@ -9,13 +10,21 @@ function AuthLayout({
   children: ReactNode
 }) {
   return (
-    <div className="flex min-h-screen w-full bg-[#05070d]">
-      <div className="relative hidden w-1/2 lg:block">
-        <img
-          src="/assets/auth/auth-leftside-background.jpg"
-          alt=""
-          className="h-full w-full object-cover"
+    <div className="flex min-h-screen w-full bg-background">
+      <div className="relative hidden w-1/2 flex-col justify-between overflow-hidden bg-gradient-to-br from-brand-black via-[#0b2a4a] to-brand-blue p-12 lg:flex">
+        <Logo className="h-9 self-start" />
+        <LogoMark
+          variant="white"
+          className="pointer-events-none absolute -right-16 -bottom-16 h-[420px] opacity-10"
         />
+        <div className="relative max-w-md">
+          <p className="text-4xl leading-tight font-bold text-white">
+            Admin control panel
+          </p>
+          <p className="mt-3 text-lg text-white/70">
+            Manage gift cards, transactions and users in one place.
+          </p>
+        </div>
       </div>
 
       <div className="flex w-full flex-col items-center justify-center px-6 py-16 lg:w-1/2">

@@ -1,13 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
+/* Brand typeface is Helvetica Now Display (licensed); Inter is the free stand-in until the font files are added. */
+@import "@fontsource-variable/inter";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
     --font-heading: var(--font-sans);
-    --font-sans: 'Geist Variable', sans-serif;
+    --font-sans: 'Helvetica Now Display', 'Inter Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --color-brand-blue: var(--brand-blue);
+    --color-brand-black: var(--brand-black);
     --color-status-critical: var(--status-critical);
     --color-status-warning: var(--status-warning);
     --color-status-good: var(--status-good);
@@ -52,14 +55,18 @@
 }
 
 :root {
+    /* Brand palette (Asapways brand guide) */
+    --brand-blue: #0078d7;
+    --brand-black: #0b131a;
+
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
+    --primary: var(--brand-blue);
+    --primary-foreground: #ffffff;
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
@@ -69,7 +76,7 @@
     --destructive: oklch(0.577 0.245 27.325);
     --border: oklch(0.922 0 0);
     --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
+    --ring: var(--brand-blue);
     --chart-1: oklch(0.87 0 0);
     --chart-2: oklch(0.556 0 0);
     --chart-3: oklch(0.439 0 0);
@@ -90,37 +97,37 @@
 }
 
 .dark {
-    --background: #05070a;
+    --background: var(--brand-black);
     --foreground: #f5f6f8;
-    --card: #12151d;
+    --card: #121b24;
     --card-foreground: #f5f6f8;
-    --popover: #14171f;
+    --popover: #15202a;
     --popover-foreground: #f5f6f8;
-    --primary: #3987e5;
+    --primary: var(--brand-blue);
     --primary-foreground: #ffffff;
-    --secondary: #1a1e28;
+    --secondary: #1a2531;
     --secondary-foreground: #c7cbd4;
-    --muted: #1a1e28;
+    --muted: #1a2531;
     --muted-foreground: #8b93a1;
-    --accent: #1a1e28;
+    --accent: #1a2531;
     --accent-foreground: #f5f6f8;
     --destructive: #d03b3b;
     --border: rgba(255, 255, 255, 0.08);
     --input: rgba(255, 255, 255, 0.08);
-    --ring: #3987e5;
-    --chart-1: #3987e5;
+    --ring: var(--brand-blue);
+    --chart-1: var(--brand-blue);
     --chart-2: #199e70;
     --chart-3: #d95926;
     --chart-4: #c98500;
     --chart-5: #d55181;
-    --sidebar: #05070a;
+    --sidebar: var(--brand-black);
     --sidebar-foreground: #f5f6f8;
-    --sidebar-primary: #3987e5;
+    --sidebar-primary: var(--brand-blue);
     --sidebar-primary-foreground: #ffffff;
-    --sidebar-accent: #171b24;
+    --sidebar-accent: #16212c;
     --sidebar-accent-foreground: #f5f6f8;
     --sidebar-border: rgba(255, 255, 255, 0.08);
-    --sidebar-ring: #3987e5;
+    --sidebar-ring: var(--brand-blue);
 
     --status-good: #0ca30c;
     --status-warning: #fab219;

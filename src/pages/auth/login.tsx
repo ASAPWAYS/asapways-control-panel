@@ -11,7 +11,7 @@ import { ApiError } from "@/lib/api/client"
 import { useAuth } from "@/lib/auth/use-auth"
 
 const fieldInputClassName =
-  "h-13 rounded-full border-white/15 bg-white/[0.03] px-5 text-white placeholder:text-slate-500 focus-visible:border-sky-500 focus-visible:ring-sky-500/30"
+  "h-13 rounded-full border-white/15 bg-white/[0.03] px-5 text-white placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-primary/30"
 
 function LoginPage() {
   const navigate = useNavigate()
@@ -58,12 +58,12 @@ function LoginPage() {
     return (
       <AuthLayout title="Check your email">
         <form onSubmit={handleVerifySubmit} className="flex flex-col gap-6">
-          <p className="text-center text-sm text-slate-400">
+          <p className="text-center text-sm text-muted-foreground">
             We sent a login code to <span className="text-white">{email}</span>
           </p>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="otp" className="font-normal text-slate-300">
+            <Label htmlFor="otp" className="font-normal text-foreground/80">
               Login code
             </Label>
             <Input
@@ -83,7 +83,7 @@ function LoginPage() {
           <Button
             type="submit"
             disabled={submitting || !otp}
-            className="mt-4 h-13 w-full rounded-full bg-[#152a42] text-slate-400 hover:bg-[#1b3550] hover:text-slate-300"
+            className="mt-4 h-13 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:bg-primary/40 disabled:text-white/60"
           >
             {submitting ? "Verifying…" : "Verify & Continue"}
           </Button>
@@ -95,7 +95,7 @@ function LoginPage() {
               setOtp("")
               setError(null)
             }}
-            className="text-center text-sm text-slate-400 hover:text-slate-200"
+            className="text-center text-sm text-muted-foreground hover:text-foreground"
           >
             Use a different account
           </button>
@@ -105,10 +105,10 @@ function LoginPage() {
   }
 
   return (
-    <AuthLayout title="AsapWays Admin">
+    <AuthLayout title="Asapways Admin">
       <form onSubmit={handleCredentialsSubmit} className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="email" className="font-normal text-slate-300">
+          <Label htmlFor="email" className="font-normal text-foreground/80">
             Email
           </Label>
           <Input
@@ -122,7 +122,7 @@ function LoginPage() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <Label htmlFor="password" className="font-normal text-slate-300">
+          <Label htmlFor="password" className="font-normal text-foreground/80">
             Password
           </Label>
           <div className="relative">
@@ -138,7 +138,7 @@ function LoginPage() {
               type="button"
               onClick={() => setShowPassword((value) => !value)}
               aria-label={showPassword ? "Hide password" : "Show password"}
-              className="absolute inset-y-0 right-4 flex items-center text-slate-400 hover:text-slate-200"
+              className="absolute inset-y-0 right-4 flex items-center text-muted-foreground hover:text-foreground"
             >
               {showPassword ? (
                 <EyeOff className="size-4.5" />
@@ -157,7 +157,7 @@ function LoginPage() {
           />
           <Label
             htmlFor="remember-me"
-            className="font-normal text-slate-400"
+            className="font-normal text-muted-foreground"
           >
             Remember me
           </Label>
@@ -168,7 +168,7 @@ function LoginPage() {
         <Button
           type="submit"
           disabled={submitting || !email || !password}
-          className="mt-4 h-13 w-full rounded-full bg-[#152a42] text-slate-400 hover:bg-[#1b3550] hover:text-slate-300"
+          className="mt-4 h-13 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:bg-primary/40 disabled:text-white/60"
         >
           {submitting ? "Sending code…" : "Continue"}
         </Button>
