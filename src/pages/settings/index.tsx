@@ -8,6 +8,7 @@ import { formatLongDate } from "@/lib/format-date"
 import { useAuth } from "@/lib/auth/use-auth"
 import { ApiError } from "@/lib/api/client"
 import { getSettings, updateSetting, type PlatformSettings } from "@/lib/api/settings"
+import { LogoMark } from "@/components/brand/logo-mark"
 
 function SettingCard({
   title,
@@ -99,7 +100,7 @@ function SettingsPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-2xl text-muted-foreground">All,</p>
-          <p className="mt-1 text-3xl font-bold text-foreground">Platform Settings ⚡</p>
+          <p className="mt-1 text-3xl font-bold text-foreground">Platform Settings<LogoMark className="ml-2 inline-block h-[0.9em] w-auto align-[-0.1em]" /></p>
         </div>
         <div className="text-right">
           <p className="text-sm text-muted-foreground">Current Date</p>

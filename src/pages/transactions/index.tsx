@@ -20,6 +20,7 @@ import {
 } from "@/lib/api/transactions"
 import { getByType, type ByTypeBreakdown } from "@/lib/api/analytics"
 import type { FilterOption } from "@/lib/types"
+import { LogoMark } from "@/components/brand/logo-mark"
 
 const statusOptions: FilterOption[] = [
   { label: "All Statuses", value: "all" },
@@ -134,7 +135,7 @@ function TransactionsPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-2xl text-muted-foreground">All,</p>
-          <p className="mt-1 text-3xl font-bold text-foreground">Transactions ⚡</p>
+          <p className="mt-1 text-3xl font-bold text-foreground">Transactions<LogoMark className="ml-2 inline-block h-[0.9em] w-auto align-[-0.1em]" /></p>
         </div>
         <div className="text-right">
           <p className="text-sm text-muted-foreground">Current Date</p>

@@ -22,6 +22,7 @@ import {
   walletBalanceFilterOptions,
 } from "@/lib/mock/users"
 import type { StatCardData } from "@/lib/types"
+import { LogoMark } from "@/components/brand/logo-mark"
 
 const statusTabs = ["all", "unverified", "verified"] as const
 
@@ -143,7 +144,7 @@ function UsersPage() {
         <div>
           <p className="text-2xl text-muted-foreground">All,</p>
           <p className="mt-1 text-3xl font-bold text-foreground">
-            Asapways Users ⚡
+            Asapways Users<LogoMark className="ml-2 inline-block h-[0.9em] w-auto align-[-0.1em]" />
           </p>
         </div>
         <div className="text-right">

@@ -39,6 +39,7 @@ import {
   type ApiShiftRotation,
   type ApiShift,
 } from "@/lib/api/shifts"
+import { LogoMark } from "@/components/brand/logo-mark"
 
 const shiftTabs = ["Rotations", "Assigned Shifts", "Settings"] as const
 const dayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
@@ -562,7 +563,7 @@ function ShiftsPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-2xl text-muted-foreground">All,</p>
-          <p className="mt-1 text-3xl font-bold text-foreground">Shift Scheduling ⚡</p>
+          <p className="mt-1 text-3xl font-bold text-foreground">Shift Scheduling<LogoMark className="ml-2 inline-block h-[0.9em] w-auto align-[-0.1em]" /></p>
         </div>
         <div className="flex items-center gap-3">
           <Button

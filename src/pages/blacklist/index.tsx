@@ -31,6 +31,7 @@ import {
 } from "@/lib/api/blacklist"
 import type { RestrictAction } from "@/lib/api/users"
 import type { FilterOption } from "@/lib/types"
+import { LogoMark } from "@/components/brand/logo-mark"
 
 const typeOptions: FilterOption[] = [
   { label: "All Types", value: "all" },
@@ -212,7 +213,7 @@ function BlacklistPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-2xl text-muted-foreground">All,</p>
-          <p className="mt-1 text-3xl font-bold text-foreground">Action Restrictions ⚡</p>
+          <p className="mt-1 text-3xl font-bold text-foreground">Action Restrictions<LogoMark className="ml-2 inline-block h-[0.9em] w-auto align-[-0.1em]" /></p>
         </div>
         <div className="text-right">
           <p className="text-sm text-muted-foreground">Current Date</p>

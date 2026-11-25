@@ -21,6 +21,7 @@ import { mapApiTransaction } from "@/lib/api/adapters"
 import type { StatCardData } from "@/lib/types"
 import type { GiftcardActivity } from "@/lib/mock/dashboard"
 import type { Transaction } from "@/lib/mock/dashboard"
+import { LogoMark } from "@/components/brand/logo-mark"
 
 function DashboardPage() {
   const { admin, request } = useAuth()
@@ -114,7 +115,7 @@ function DashboardPage() {
         <div>
           <p className="text-2xl text-muted-foreground">Hello {firstName},</p>
           <p className="mt-1 text-3xl font-bold text-foreground">
-            Asap Day! ⚡
+            Asap Day!<LogoMark className="ml-2 inline-block h-[0.9em] w-auto align-[-0.1em]" />
           </p>
         </div>
         <div className="text-right">

@@ -119,7 +119,7 @@ function describeTransaction(tx: ApiTransaction): { subject: string; description
   if (tx.tradeTransactable) {
     const sub = tx.tradeTransactable.giftCardSubCategory
     return {
-      subject: sub?.giftcardCategory.name ?? "Gift Card",
+      subject: sub?.giftcardCategory?.name ?? "Gift Card",
       description: sub?.name ?? "Gift card trade",
     }
   }
@@ -131,8 +131,8 @@ function describeTransaction(tx: ApiTransaction): { subject: string; description
   }
   if (tx.walletTransactable) {
     return {
-      subject: tx.walletTransactable.walletType,
-      description: `Wallet ${tx.walletTransactable.walletType.toLowerCase()}`,
+      subject: tx.walletTransactable.walletType ?? "Wallet",
+      description: `Wallet ${tx.walletTransactable.walletType?.toLowerCase() ?? "transaction"}`,
     }
   }
   return { subject: "—", description: tx.transactionType }

@@ -38,6 +38,7 @@ import {
   type ApiRole,
   type ApiPermission,
 } from "@/lib/api/rbac"
+import { LogoMark } from "@/components/brand/logo-mark"
 
 const staffTabs = ["Admins", "Roles", "Permissions"] as const
 
@@ -450,7 +451,7 @@ function StaffsPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-2xl text-muted-foreground">All,</p>
-          <p className="mt-1 text-3xl font-bold text-foreground">Staff & Access ⚡</p>
+          <p className="mt-1 text-3xl font-bold text-foreground">Staff & Access<LogoMark className="ml-2 inline-block h-[0.9em] w-auto align-[-0.1em]" /></p>
         </div>
         <div className="text-right">
           <p className="text-sm text-muted-foreground">Current Date</p>

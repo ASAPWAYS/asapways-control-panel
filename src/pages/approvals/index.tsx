@@ -27,6 +27,7 @@ import {
   type ApiApproval,
   type ApprovalKind,
 } from "@/lib/api/approvals"
+import { LogoMark } from "@/components/brand/logo-mark"
 
 type KindTab = "all" | "TRADE" | "WALLET"
 
@@ -105,7 +106,7 @@ function ApprovalsPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-2xl text-muted-foreground">All,</p>
-          <p className="mt-1 text-3xl font-bold text-foreground">Pending Approvals ⚡</p>
+          <p className="mt-1 text-3xl font-bold text-foreground">Pending Approvals<LogoMark className="ml-2 inline-block h-[0.9em] w-auto align-[-0.1em]" /></p>
         </div>
         <div className="text-right">
           <p className="text-sm text-muted-foreground">Current Date</p>

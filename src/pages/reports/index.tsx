@@ -15,6 +15,7 @@ import {
 import { formatLongDate } from "@/lib/format-date"
 import { useAuth } from "@/lib/auth/use-auth"
 import { listAuditLogs, type ApiAuditLog } from "@/lib/api/audit"
+import { LogoMark } from "@/components/brand/logo-mark"
 
 function AuditLogDetailDialog({
   log,
@@ -115,7 +116,7 @@ function ReportsPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-2xl text-muted-foreground">All,</p>
-          <p className="mt-1 text-3xl font-bold text-foreground">Admin Activity Log ⚡</p>
+          <p className="mt-1 text-3xl font-bold text-foreground">Admin Activity Log<LogoMark className="ml-2 inline-block h-[0.9em] w-auto align-[-0.1em]" /></p>
         </div>
         <div className="text-right">
           <p className="text-sm text-muted-foreground">Current Date</p>
